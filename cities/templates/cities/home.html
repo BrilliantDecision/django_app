@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Города{% endblock %}
+{% block content %}
+    <h1 class="display-4">Города</h1>
+    <div class="row">
+        <div class="col-md-6">
+            {% for object in objects_list %}
+                <a href={% url 'cities:detail' object.id %}>
+                    <p>{{ object.name }}</p>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <form action="." method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <br>
+        <input type="submit" value="Сохранить">
+    </form>
+
+{% endblock %}
